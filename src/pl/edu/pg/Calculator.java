@@ -41,10 +41,10 @@ public class Calculator {
                 if (firstDayOfTheLastMenstrual == null) {
                     questions();
                     if (checkIfTheDateIsCorrect()) break;
-                    fertileDays.calculateTheFertileDays(firstDayOfTheLastMenstrual);
+                    fertileDays.calculateAndShowTheFertileDays(firstDayOfTheLastMenstrual);
                 } else {
                     if (checkIfTheDateIsCorrect()) break;
-                    fertileDays.calculateTheFertileDays(firstDayOfTheLastMenstrual);
+                    fertileDays.calculateAndShowTheFertileDays(firstDayOfTheLastMenstrual);
                 }
                 break;
             case 3:
@@ -65,7 +65,7 @@ public class Calculator {
         }
     }
 
-    public void questions() {
+    private void questions() {
         System.out.println("Podaj datę pierwszego dnia ostatniej miesiączki (yyyy-MM-dd)");
         Scanner scanner = new Scanner(System.in);
         String date = scanner.nextLine();
@@ -75,7 +75,7 @@ public class Calculator {
         daysBetween = ChronoUnit.DAYS.between(firstDayOfTheLastMenstrual, LocalDate.now());
     }
 
-    public boolean lateMenstruation() {
+    private boolean lateMenstruation() {
         if (daysBetween > lengthOfTheMenstrualCycle * 2) {
             System.out.println("Idź do lekarza na kontrolę\n");
             return true;
@@ -83,7 +83,7 @@ public class Calculator {
         return false;
     }
 
-    public boolean checkIfTheDateIsCorrect() {
+    private boolean checkIfTheDateIsCorrect() {
         if (firstDayOfTheLastMenstrual.isAfter(LocalDate.now())) {
             System.out.println("Błędna data, spróbuj jeszcze raz.\n");
             return true;
